@@ -1,0 +1,86 @@
+.section {
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tableWrapper {
+  overflow-x: auto;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.caption {
+  caption-side: top;
+  text-align: left;
+  padding: 0.75rem 1.25rem 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+  border-radius: 8px 8px 0 0;
+}
+
+.tableHead {
+  background: var(--color-surface);
+  border-bottom: 2px solid var(--color-border);
+}
+
+.thType,
+.thTime,
+.thBody {
+  padding: 0.625rem 1rem 0.625rem;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.thType {
+  padding-left: 1.25rem;
+  width: 6rem;
+}
+
+.thTime {
+  width: 12rem;
+}
+
+.thBody {
+  padding-right: 1.25rem;
+}
+
+.emptyState {
+  border: 1px dashed var(--color-border);
+  border-radius: 8px;
+  padding: 2.5rem;
+  text-align: center;
+}
+
+.emptyMessage {
+  color: var(--color-text-muted);
+  font-size: 0.9375rem;
+  line-height: 1.6;
+  max-width: 36rem;
+  margin: 0 auto;
+}

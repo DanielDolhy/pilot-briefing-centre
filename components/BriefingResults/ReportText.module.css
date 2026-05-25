@@ -1,0 +1,17 @@
+.reportText {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.cloudBlue {
+  color: var(--color-cloud-blue);
+  font-weight: 600;
+}
+
+.cloudRed {
+  color: var(--color-cloud-red);
+  font-weight: 600;
+}
