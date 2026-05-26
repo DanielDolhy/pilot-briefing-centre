@@ -75,7 +75,7 @@ export async function fetchBriefing(
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     });
-  } catch (networkError) {
+  } catch {
     // fetch() itself throws only on network-level failures (no connection, DNS, etc.)
     throw new Error(
       "Unable to reach the weather data service. Please check your connection and try again."

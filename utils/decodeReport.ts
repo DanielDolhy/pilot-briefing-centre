@@ -267,7 +267,7 @@ export function decodeMetar(text: string): DecodedMetar {
   if (isCavok) {
     flightCategory = "VFR";
   } else {
-    let visM = valueMeters !== undefined ? valueMeters : 9999;
+    const visM = valueMeters !== undefined ? valueMeters : 9999;
     
     // Categorize
     if (ceilingAlt < 500 || visM < 1600) {
