@@ -23,13 +23,13 @@ export function ReportRow({ report }: ReportRowProps) {
 
   return (
     <tr className={styles.row}>
-      <td className={styles.queryType}>
+      <td className={styles.queryType} data-label="Type">
         <span className={styles.queryTypeBadge}>{report.queryType}</span>
       </td>
-      <td className={styles.reportTime}>
+      <td className={styles.reportTime} data-label="Time">
         {formatReportTime(displayTime)}
       </td>
-      <td className={styles.reportBody}>
+      <td className={styles.reportBody} data-label="Report">
         <ReportText text={report.text} />
       </td>
     </tr>

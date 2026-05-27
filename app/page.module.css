@@ -122,10 +122,23 @@
    -------------------------------------------------------------------------- */
 @media (max-width: 640px) {
   .card {
-    padding: 1.25rem;
+    padding: 1rem;
   }
 
   .main {
-    padding: 1.25rem 1rem;
+    padding: 1rem 0.875rem;
+    gap: 1.25rem;
+  }
+
+  .header {
+    padding: 0.875rem 0;
+  }
+
+  .title {
+    font-size: 1.0625rem;
+  }
+
+  .subtitle {
+    font-size: 0.75rem;
   }
 }

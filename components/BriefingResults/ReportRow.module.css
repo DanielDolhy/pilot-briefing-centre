@@ -44,3 +44,66 @@
   padding: 0.75rem 1.25rem 0.75rem 1rem;
   vertical-align: top;
 }
+
+/* --------------------------------------------------------------------------
+   Responsive — Each report row becomes a compact scannable card
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* The <tr> becomes the card container */
+  .row {
+    border: 1px solid var(--color-border);
+    border-radius: 6px;
+    margin: 0.5rem;
+    background: var(--color-surface);
+    overflow: hidden;
+  }
+
+  /* Remove the last-child rule — cards have their own borders */
+  .row:last-child {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  /* Type + Time cells: lay out in a single flex row as a card header bar */
+  .queryType,
+  .reportTime {
+    display: inline-block;
+    border-bottom: none;
+    padding: 0.5rem 0.625rem;
+    vertical-align: middle;
+  }
+
+  /* The type + time bar — first cell creates the bar, both cells sit inside it */
+  .queryType {
+    background: var(--color-surface-raised);
+    padding-left: 0.75rem;
+  }
+
+  .reportTime {
+    background: var(--color-surface-raised);
+    font-size: 0.75rem;
+    white-space: normal;
+    word-break: break-word;
+  }
+
+  /* Time cell gets a micro label via ::before so pilots know what it is */
+  .reportTime::before {
+    content: attr(data-label) ": ";
+    font-size: 0.6rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+    margin-right: 0.25rem;
+    font-family: var(--font-sans);
+  }
+
+  /* A thin divider before the report body */
+  .reportBody {
+    display: block;
+    padding: 0.75rem;
+    border-top: 1px solid var(--color-border);
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+}

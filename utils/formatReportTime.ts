@@ -20,13 +20,16 @@
  * @returns         - A locale-formatted string, or a fallback "—" for invalid input.
  */
 
-/** Detect the user's IANA timezone, falling back to UTC. */
+/** Detect the user's IANA timezone, falling back to UTC.
+ * Returns 'UTC' during SSR so the server-rendered HTML is stable
+ * and consistent — the client updates the value after hydration. */
 function detectUserTimezone(): string {
+  if (typeof window === 'undefined') return 'UTC';
   try {
     const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    return tz || "UTC";
+    return tz || 'UTC';
   } catch {
-    return "UTC";
+    return 'UTC';
   }
 }
 

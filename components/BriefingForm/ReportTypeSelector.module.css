@@ -60,3 +60,21 @@
   content: "⚠";
   flex-shrink: 0;
 }
+
+@media (max-width: 640px) {
+  /* Larger touch targets for cockpit / glove use */
+  .checkboxGroup {
+    gap: 0.75rem;
+  }
+
+  .checkboxLabel {
+    font-size: 1rem;
+    min-height: 2.75rem;
+    align-items: center;
+  }
+
+  .checkbox {
+    width: 1.125rem;
+    height: 1.125rem;
+  }
+}

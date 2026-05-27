@@ -129,3 +129,55 @@
   box-shadow: 0 0 12px rgba(56, 139, 253, 0.1);
 }
 
+/* --------------------------------------------------------------------------
+   Responsive — Raw Report Table → Stacked Cards
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* Tab bar: buttons share equal width and fill the row */
+  .tabsContainer {
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .tabButton {
+    flex: 1;
+    justify-content: center;
+    font-size: 0.75rem;
+    padding: 0.5rem 0.5rem;
+  }
+
+  /* Caption compresses slightly */
+  .caption {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    font-size: 0.6875rem;
+    padding: 0.625rem 1rem;
+    word-break: break-word;
+  }
+
+  /* Hide the column header row visually while keeping it in the DOM
+     for screen readers (clip technique is the accessible approach). */
+  .tableHead {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  /* Each <tr> becomes a self-contained card block */
+  .table,
+  .table tbody,
+  .table tr,
+  .table td {
+    display: block;
+    width: 100%;
+  }
+
+  /* Station header row: keep it full-width and visible */
+  .table thead tr {
+    display: block;
+  }
+}

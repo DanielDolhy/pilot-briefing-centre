@@ -11,3 +11,20 @@
   text-transform: uppercase;
   border-bottom: 1px solid var(--color-border);
 }
+
+@media (max-width: 640px) {
+  /* When the table collapses to block layout, the <th> must also be block
+     so it spans the full width and acts as a visible group separator. */
+  .stationHeader,
+  .stationId {
+    display: block;
+    width: 100%;
+  }
+
+  .stationId {
+    padding: 0.5rem 0.875rem;
+    font-size: 0.875rem;
+    /* A subtle top margin separates each station group visually */
+    margin-top: 0.25rem;
+  }
+}

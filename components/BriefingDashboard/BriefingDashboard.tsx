@@ -1,14 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import type { ReportEntry } from "@/types/briefing";
 import { BriefingForm } from "@/components/BriefingForm/BriefingForm";
 import { BriefingResults } from "@/components/BriefingResults/BriefingResults";
-import { USER_TIMEZONE } from "@/utils/formatReportTime";
 import styles from "@/app/page.module.css";
 
 export function BriefingDashboard() {
   const [results, setResults] = useState<ReportEntry[] | null>(null);
+
+  // Resolved after hydration to avoid SSR/client timezone mismatch.
+  // Server always renders 'UTC'; the client updates to the actual browser TZ.
+  const [timezone, setTimezone] = useState<string | null>(null);
+  useEffect(() => {
+    setTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC');
+  }, []);
 
   function handleQueryStart() {
     // Clear previous results as soon as a new query begins.
@@ -65,7 +71,8 @@ export function BriefingDashboard() {
           >
             IBL Soft
           </a>{" "}
-          · Times displayed in your local time ({USER_TIMEZONE})
+          · Times displayed in{" "}
+          {timezone ? `your local time (${timezone})` : "UTC"}
         </p>
       </footer>
     </div>
