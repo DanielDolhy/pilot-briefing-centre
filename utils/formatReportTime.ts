@@ -2,10 +2,17 @@
  * formatReportTime
  *
  * Converts an ISO 8601 UTC timestamp from a ReportEntry into a human-readable
- * string using the Slovak locale (sk-SK) and the Slovak timezone
- * (Europe/Bratislava), as required by the assignment brief.
+ * string, displayed in the **user's local timezone** as detected by the browser.
  *
- * The formatter is created once and reused across calls for performance.
+ * Detection strategy (with graceful fallback):
+ *   1. `Intl.DateTimeFormat().resolvedOptions().timeZone` — available in all
+ *      modern browsers and Node ≥ 13. Returns an IANA timezone string such as
+ *      "America/New_York" or "Europe/London".
+ *   2. Falls back to "UTC" if the API is unavailable or returns an empty string.
+ *
+ * The formatter is created once at module load time for performance. Because
+ * this module runs exclusively in the browser (it is only called from Client
+ * Components), the detected timezone is stable for the lifetime of the page.
  *
  * Expected output example: "15. 2. 2017, 11:30:00"
  *
@@ -13,8 +20,20 @@
  * @returns         - A locale-formatted string, or a fallback "—" for invalid input.
  */
 
-const SK_FORMATTER = new Intl.DateTimeFormat("sk-SK", {
-  timeZone: "Europe/Bratislava",
+/** Detect the user's IANA timezone, falling back to UTC. */
+function detectUserTimezone(): string {
+  try {
+    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone;
+    return tz || "UTC";
+  } catch {
+    return "UTC";
+  }
+}
+
+export const USER_TIMEZONE: string = detectUserTimezone();
+
+const LOCAL_FORMATTER = new Intl.DateTimeFormat(undefined, {
+  timeZone: USER_TIMEZONE,
   year: "numeric",
   month: "numeric",
   day: "numeric",
@@ -31,5 +50,5 @@ export function formatReportTime(isoString: string | undefined | null): string {
   // `new Date()` on an invalid string produces an "Invalid Date" object.
   if (isNaN(date.getTime())) return "—";
 
-  return SK_FORMATTER.format(date);
+  return LOCAL_FORMATTER.format(date);
 }

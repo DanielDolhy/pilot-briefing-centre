@@ -75,7 +75,7 @@ export function BriefingResults({ results }: BriefingResultsProps) {
                   Type
                 </th>
                 <th scope="col" className={styles.thTime}>
-                  Report Time (SK)
+                  Report Time (Local)
                 </th>
                 <th scope="col" className={styles.thBody}>
                   Report

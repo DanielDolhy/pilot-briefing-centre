@@ -4,6 +4,7 @@ import { useState } from "react";
 import type { ReportEntry } from "@/types/briefing";
 import { BriefingForm } from "@/components/BriefingForm/BriefingForm";
 import { BriefingResults } from "@/components/BriefingResults/BriefingResults";
+import { USER_TIMEZONE } from "@/utils/formatReportTime";
 import styles from "@/app/page.module.css";
 
 export function BriefingDashboard() {
@@ -64,7 +65,7 @@ export function BriefingDashboard() {
           >
             IBL Soft
           </a>{" "}
-          · Times displayed in Slovak local time (Europe/Bratislava)
+          · Times displayed in your local time ({USER_TIMEZONE})
         </p>
       </footer>
     </div>
